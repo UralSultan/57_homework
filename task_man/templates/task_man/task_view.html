@@ -4,7 +4,13 @@
 
     <article class="detail-card">
         <div class="task-meta">
-            <span>{{ task.type }}</span>
+            <div class="task-types">
+                {% for task_type in task.types.all %}
+                    <span class="type-chip">{{ task_type }}</span>
+                {% empty %}
+                    <span>Типы не выбраны</span>
+                {% endfor %}
+            </div>
             <span class="status">{{ task.status }}</span>
         </div>
         <h1>{{ task.summary }}</h1>

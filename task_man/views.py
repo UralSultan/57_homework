@@ -33,13 +33,15 @@ class TaskAddView(TemplateView):
     def post(self, request, *args, **kwargs):
         form = TaskForm(request.POST)
         if form.is_valid():
-            Task.objects.create(
+            task = Task.objects.create(
                 summary=form.cleaned_data['summary'],
                 description=form.cleaned_data['description'],
                 status=form.cleaned_data['status'],
-                type=form.cleaned_data['type'],
             )
+
+            task.types.set(form.cleaned_data['types'])
             return redirect('task_list')
+
         return render(request, self.template_name, {'form': form})
 
 
@@ -77,7 +79,7 @@ class TaskUpdateView(TemplateView):
             'summary': task.summary,
             'description': task.description,
             'status': task.status,
-            'type': task.type,
+            'types': task.types.all(),
         })
         return context
 
@@ -88,8 +90,8 @@ class TaskUpdateView(TemplateView):
             task.summary = form.cleaned_data['summary']
             task.description = form.cleaned_data['description']
             task.status = form.cleaned_data['status']
-            task.type = form.cleaned_data['type']
             task.save()
+            task.types.set(form.cleaned_data['types'])
             return redirect('task_view', task_pk=task.pk)
         return render(
             request,

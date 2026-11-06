@@ -277,3 +277,16 @@ h1 {
 .detail-actions form {
     margin: 0;
 }
+.task-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.type-chip {
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: #f0f3ef;
+    color: #566258;
+    font-size: 12px;
+}

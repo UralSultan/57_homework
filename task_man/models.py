@@ -27,7 +27,7 @@ class Task(models.Model):
     summary = models.CharField(max_length=100)
     description = models.TextField()
     status = models.ForeignKey(Status, on_delete=models.PROTECT)
-    type = models.ForeignKey(Type, on_delete=models.PROTECT)
+    types = models.ManyToManyField(Type, related_name='tasks', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

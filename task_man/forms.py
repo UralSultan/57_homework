@@ -9,5 +9,4 @@ class TaskForm(forms.Form):
                                   label='Описание')
     status = forms.ModelChoiceField(required=True, queryset=Status.objects.all(),
                                     label='Статус')
-    type = forms.ModelChoiceField(required=True, queryset=Type.objects.all(),
-                                  label='Тип')
+    types = forms.ModelMultipleChoiceField(queryset=Type.objects.all(), label='Типы')

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}{{ task.summary }} — Мои задачи{% endblock %}
+{% block content %}
+
+    <article class="detail-card">
+        <div class="task-meta">
+            <span>{{ task.type }}</span>
+            <span class="status">{{ task.status }}</span>
+        </div>
+        <h1>{{ task.summary }}</h1>
+        <div class="detail-description">
+            {{ task.description|linebreaksbr }}
+        </div>
+        <div class="detail-dates">
+            <p>Создана: {{ task.created_at|date:"d.m.Y H:i" }}</p>
+            <p>Обновлена: {{ task.updated_at|date:"d.m.Y H:i" }}</p>
+        </div>
+    </article>
+    <div class="detail-actions">
+        <a class="button" href="{% url 'task_edit' task_pk=task.pk %}">
+            Редактировать
+        </a>
+
+        <form method="post" action="{% url 'task_delete' task_pk=task.pk %}">
+            {% csrf_token %}
+            <button class="button button-danger" type="submit">
+            Удалить
+            </button>
+        </form>
+</div>
+    </div>
+{% endblock %}

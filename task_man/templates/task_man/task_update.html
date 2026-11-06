@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактирование задачи{% endblock %}
+
+{% block content %}
+    <div class="page-heading">
+        <div>
+            <p class="eyebrow">Планирование</p>
+            <h1>Редактирование задачи</h1>
+            <p class="page-description">{{ task.summary }}</p>
+        </div>
+    </div>
+
+    <section class="form-card">
+        {% include 'partial/task_create_form.html' with button_value="Обновить"%}
+    </section>
+{% endblock %}

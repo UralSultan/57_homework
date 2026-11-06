@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Список задач{% endblock %}
+
+{% block content %}
+    <div class="page-heading">
+    <div>
+        <p class="eyebrow">Планирование</p>
+        <h1>Список задач</h1>
+    </div>
+
+    <div class="heading-actions">
+        <a class="button" href="{% url 'task_add' %}">
+            <span aria-hidden="true">+</span>
+            Новая задача
+        </a>
+    </div>
+</div>
+
+    {% if tasks %}
+        <section class="task-list">
+            {% for task in tasks %}
+                <article class="task-card">
+                    <div class="task-meta">
+                        <span>{{ task.type }}</span>
+                        <span class="status">{{ task.status }}</span>
+                    </div>
+
+                    <h2>
+                        <a class="task-title-link"
+                           href="{% url 'task_view' task_pk=task.pk %}">
+                        {{ task.summary }}
+                        </a>
+                    </h2>
+                    <p>{{ task.description|linebreaksbr }}</p>
+                    <small>Создана {{ task.created_at|date:"d.m.Y" }}</small>
+                </article>
+            {% endfor %}
+        </section>
+    {% else %}
+        <section class="empty-state">
+            <h2>Пока задач нет</h2>
+            <p>Добавленные задачи появятся здесь.</p>
+        </section>
+    {% endif %}
+{% endblock %}

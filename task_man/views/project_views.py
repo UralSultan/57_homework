@@ -1,4 +1,4 @@
-from django.db.models import Q
+from django.db.models import Count, Q
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
@@ -13,7 +13,9 @@ class ProjectsView(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        projects = Project.objects.all()
+        projects = Project.objects.annotate(
+            active_task_count=Count('tasks', filter=Q(tasks__is_deleted=False))
+        )
         query = self.request.GET.get('q')
         if query:
             projects = projects.filter(
@@ -34,7 +36,11 @@ class ProjectDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['tasks'] = self.object.tasks.select_related('status').prefetch_related('types')
+        context['tasks'] = (
+            self.object.tasks.filter(is_deleted=False)
+            .select_related('status')
+            .prefetch_related('types')
+        )
         return context
 
 

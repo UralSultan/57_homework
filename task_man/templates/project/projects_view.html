@@ -30,7 +30,7 @@
                     </h2>
                     <p>{{ project.description|truncatewords:28 }}</p>
                     <div class="card-footer">
-                        <span class="muted">Задач: {{ project.tasks.count }}</span>
+                        <span class="muted">Задач: {{ project.active_task_count }}</span>
                     </div>
                 </article>
             {% endfor %}

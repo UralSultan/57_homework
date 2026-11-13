@@ -12,6 +12,9 @@ class TaskView(DetailView):
     context_object_name = 'task'
     pk_url_kwarg = 'task_pk'
 
+    def get_queryset(self):
+        return super().get_queryset().filter(is_deleted=False)
+
 
 class TaskAddView(FormView):
     template_name = 'task_man/task_add.html'
@@ -41,6 +44,9 @@ class TaskUpdateView(UpdateView):
     context_object_name = 'task'
     pk_url_kwarg = 'task_pk'
 
+    def get_queryset(self):
+        return super().get_queryset().filter(is_deleted=False)
+
     def get_success_url(self):
         return reverse('task_view', kwargs={'task_pk': self.object.pk})
 
@@ -50,6 +56,14 @@ class TaskDeleteView(DeleteView):
     template_name = 'task_man/task_delete.html'
     context_object_name = 'task'
     pk_url_kwarg = 'task_pk'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(is_deleted=False)
+
+    def form_valid(self, form):
+        self.object.is_deleted = True
+        self.object.save(update_fields=['is_deleted'])
+        return redirect(self.get_success_url())
 
     def get_success_url(self):
         return reverse('project_detail', kwargs={'pk': self.object.project_id})

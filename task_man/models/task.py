@@ -4,6 +4,7 @@ from django.db import models
 
 class Task(models.Model):
     project = models.ForeignKey('task_man.Project', on_delete=models.CASCADE, related_name='tasks')
+    is_deleted = models.BooleanField(default=False, editable=False)
     summary = models.CharField(max_length=100, validators=(MinLengthValidator(10),))
     description = models.TextField(validators=[validate_forbidden_words])
     status = models.ForeignKey('task_man.Status', on_delete=models.PROTECT)

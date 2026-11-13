@@ -21,6 +21,218 @@
   }
 },
 {
+  "model": "task_man.task",
+  "pk": 1,
+  "fields": {
+    "project": 1,
+    "summary": "Задача №1",
+    "description": "Описание задачи",
+    "status": 1,
+    "created_at": "2026-11-06T07:10:41.761Z",
+    "updated_at": "2026-11-06T07:10:41.761Z",
+    "types": [
+      1
+    ]
+  }
+},
+{
+  "model": "task_man.task",
+  "pk": 2,
+  "fields": {
+    "project": 1,
+    "summary": "Задача №2",
+    "description": "Описание задачи №2",
+    "status": 2,
+    "created_at": "2026-11-06T07:10:56.789Z",
+    "updated_at": "2026-11-06T07:10:56.789Z",
+    "types": [
+      1
+    ]
+  }
+},
+{
+  "model": "task_man.task",
+  "pk": 3,
+  "fields": {
+    "project": 1,
+    "summary": "Задача №3",
+    "description": "Описание задачи №3",
+    "status": 3,
+    "created_at": "2026-11-06T07:11:11.476Z",
+    "updated_at": "2026-11-06T07:11:11.476Z",
+    "types": [
+      1
+    ]
+  }
+},
+{
+  "model": "task_man.task",
+  "pk": 4,
+  "fields": {
+    "project": 1,
+    "summary": "Задача №4",
+    "description": "Описание задачи №4",
+    "status": 2,
+    "created_at": "2026-11-06T07:11:36.142Z",
+    "updated_at": "2026-11-06T07:11:36.142Z",
+    "types": [
+      2
+    ]
+  }
+},
+{
+  "model": "task_man.task",
+  "pk": 5,
+  "fields": {
+    "project": 1,
+    "summary": "Задача №5",
+    "description": "Баг таска №",
+    "status": 3,
+    "created_at": "2026-11-06T07:11:52.077Z",
+    "updated_at": "2026-11-06T07:11:52.077Z",
+    "types": [
+      2
+    ]
+  }
+},
+{
+  "model": "task_man.task",
+  "pk": 6,
+  "fields": {
+    "project": 1,
+    "summary": "Задача №6",
+    "description": "Улучшение задача №6",
+    "status": 1,
+    "created_at": "2026-11-06T07:12:06.996Z",
+    "updated_at": "2026-11-06T07:12:06.996Z",
+    "types": [
+      3
+    ]
+  }
+},
+{
+  "model": "task_man.task",
+  "pk": 7,
+  "fields": {
+    "project": 1,
+    "summary": "Задача №7",
+    "description": "Улучшение задача №7",
+    "status": 3,
+    "created_at": "2026-11-06T07:12:22.256Z",
+    "updated_at": "2026-11-06T07:12:22.256Z",
+    "types": [
+      3
+    ]
+  }
+},
+{
+  "model": "task_man.task",
+  "pk": 8,
+  "fields": {
+    "project": 1,
+    "summary": "Задача №8",
+    "description": "Небольшое описание для задачи №8",
+    "status": 2,
+    "created_at": "2026-11-06T09:04:45.460Z",
+    "updated_at": "2026-11-06T09:28:23.206Z",
+    "types": [
+      1
+    ]
+  }
+},
+{
+  "model": "task_man.task",
+  "pk": 9,
+  "fields": {
+    "project": 1,
+    "summary": "Задача №9",
+    "description": "Описание задачи №9",
+    "status": 2,
+    "created_at": "2026-11-06T10:00:47.320Z",
+    "updated_at": "2026-11-06T10:00:47.320Z",
+    "types": [
+      1
+    ]
+  }
+},
+{
+  "model": "task_man.task",
+  "pk": 10,
+  "fields": {
+    "project": 1,
+    "summary": "Задача №10",
+    "description": "фывфывыфв",
+    "status": 1,
+    "created_at": "2026-11-06T10:01:11.557Z",
+    "updated_at": "2026-11-06T10:10:17.394Z",
+    "types": [
+      1
+    ]
+  }
+},
+{
+  "model": "task_man.task",
+  "pk": 11,
+  "fields": {
+    "project": 1,
+    "summary": "Задача №11",
+    "description": "Описание задачи №11",
+    "status": 2,
+    "created_at": "2026-11-06T10:10:37.991Z",
+    "updated_at": "2026-11-06T10:10:37.992Z",
+    "types": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "task_man.task",
+  "pk": 14,
+  "fields": {
+    "project": 1,
+    "summary": "Задача №12",
+    "description": "Описание задачи №12",
+    "status": 1,
+    "created_at": "2026-11-13T04:48:13.521Z",
+    "updated_at": "2026-11-13T04:48:13.521Z",
+    "types": [
+      2
+    ]
+  }
+},
+{
+  "model": "task_man.task",
+  "pk": 18,
+  "fields": {
+    "project": 3,
+    "summary": "Задача №1 Проект 2",
+    "description": "Задача №1 Проект2",
+    "status": 1,
+    "created_at": "2026-11-13T12:30:42.962Z",
+    "updated_at": "2026-11-13T12:30:51.238Z",
+    "types": [
+      1
+    ]
+  }
+},
+{
+  "model": "task_man.task",
+  "pk": 19,
+  "fields": {
+    "project": 3,
+    "summary": "Задача №2 проект 2",
+    "description": "Описание задачи",
+    "status": 2,
+    "created_at": "2026-11-13T12:31:19.346Z",
+    "updated_at": "2026-11-13T12:31:19.346Z",
+    "types": [
+      2,
+      3
+    ]
+  }
+},
+{
   "model": "task_man.type",
   "pk": 1,
   "fields": {
@@ -42,87 +254,23 @@
   }
 },
 {
-  "model": "task_man.task",
+  "model": "task_man.project",
   "pk": 1,
   "fields": {
-    "summary": "Задача №1",
-    "description": "Описание задачи",
-    "status": 1,
-    "type": 1,
-    "created_at": "2026-11-06T07:10:41.761Z",
-    "updated_at": "2026-11-06T07:10:41.761Z"
+    "start_date": "2026-01-01",
+    "end_date": "2026-11-30",
+    "title": "Общий проект",
+    "description": "Проект, назначенный существующим задачам."
   }
 },
 {
-  "model": "task_man.task",
-  "pk": 2,
-  "fields": {
-    "summary": "Задача №2",
-    "description": "Описание задачи №2",
-    "status": 2,
-    "type": 1,
-    "created_at": "2026-11-06T07:10:56.789Z",
-    "updated_at": "2026-11-06T07:10:56.789Z"
-  }
-},
-{
-  "model": "task_man.task",
+  "model": "task_man.project",
   "pk": 3,
   "fields": {
-    "summary": "Задача №3",
-    "description": "Описание задачи №3",
-    "status": 3,
-    "type": 1,
-    "created_at": "2026-11-06T07:11:11.476Z",
-    "updated_at": "2026-11-06T07:11:11.476Z"
-  }
-},
-{
-  "model": "task_man.task",
-  "pk": 4,
-  "fields": {
-    "summary": "Задача №4",
-    "description": "Описание задачи №4",
-    "status": 2,
-    "type": 2,
-    "created_at": "2026-11-06T07:11:36.142Z",
-    "updated_at": "2026-11-06T07:11:36.142Z"
-  }
-},
-{
-  "model": "task_man.task",
-  "pk": 5,
-  "fields": {
-    "summary": "Задача №5",
-    "description": "Баг таска №",
-    "status": 3,
-    "type": 2,
-    "created_at": "2026-11-06T07:11:52.077Z",
-    "updated_at": "2026-11-06T07:11:52.077Z"
-  }
-},
-{
-  "model": "task_man.task",
-  "pk": 6,
-  "fields": {
-    "summary": "Задача №6",
-    "description": "Улучшение задача №6",
-    "status": 1,
-    "type": 3,
-    "created_at": "2026-11-06T07:12:06.996Z",
-    "updated_at": "2026-11-06T07:12:06.996Z"
-  }
-},
-{
-  "model": "task_man.task",
-  "pk": 7,
-  "fields": {
-    "summary": "Задача №7",
-    "description": "Улучшение задача №7",
-    "status": 3,
-    "type": 3,
-    "created_at": "2026-11-06T07:12:22.256Z",
-    "updated_at": "2026-11-06T07:12:22.256Z"
+    "start_date": "2026-11-13",
+    "end_date": "2026-11-20",
+    "title": "Проект №2",
+    "description": "Описание проекта №2"
   }
 }
 ]

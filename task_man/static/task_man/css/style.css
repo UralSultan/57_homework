@@ -290,3 +290,162 @@ h1 {
     color: #566258;
     font-size: 12px;
 }
+
+.project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.project-card,
+.project-overview {
+    padding: 22px;
+    border: 1px solid #e4e9e3;
+    border-radius: 14px;
+    background: #fff;
+}
+
+.project-card h2,
+.section-heading h2 {
+    margin: 8px 0;
+    font-size: 21px;
+}
+
+.project-card p,
+.project-description {
+    color: #626b63;
+    line-height: 1.6;
+}
+
+.card-footer,
+.section-heading,
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.card-footer {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #edf0eb;
+}
+
+.text-link {
+    color: #28734b;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.text-link:hover,
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.search-form input {
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #d8dfd7;
+    border-radius: 9px;
+    background: white;
+    color: #202820;
+    font: inherit;
+}
+
+.search-form input:focus {
+    border-color: #43845d;
+    outline: 3px solid #e5f2e8;
+}
+
+.muted {
+    color: #899189;
+    font-size: 13px;
+}
+
+.section-heading {
+    margin: 34px 0 18px;
+}
+
+.section-heading .eyebrow {
+    margin-bottom: 4px;
+}
+
+.section-heading h2 {
+    margin: 0;
+}
+
+.task-card h3 {
+    margin: 18px 0 8px;
+    font-size: 19px;
+}
+
+.task-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.task-actions form {
+    margin: 0;
+}
+
+.button-small {
+    min-height: 36px;
+    padding: 0 11px;
+    font-size: 12px;
+}
+
+.button-danger {
+    border-color: #b42318;
+    background: #b42318;
+}
+
+.button-danger:hover {
+    border-color: #912018;
+    background: #912018;
+}
+
+.danger-card h1 {
+    margin-bottom: 14px;
+}
+
+.pagination {
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (max-width: 600px) {
+    .section-heading,
+    .card-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .search-form {
+        align-items: stretch;
+        flex-direction: column;
+    }
+}

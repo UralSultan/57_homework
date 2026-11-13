@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
+
 {% block title %}{{ task.summary }} — Мои задачи{% endblock %}
+
 {% block content %}
+    <a class="back-link" href="{% url 'project_detail' pk=task.project_id %}">← К проекту {{ task.project.title }}</a>
 
     <article class="detail-card">
         <div class="task-meta">
@@ -8,31 +11,26 @@
                 {% for task_type in task.types.all %}
                     <span class="type-chip">{{ task_type }}</span>
                 {% empty %}
-                    <span>Типы не выбраны</span>
+                    <span class="muted">Типы не выбраны</span>
                 {% endfor %}
             </div>
             <span class="status">{{ task.status }}</span>
         </div>
+
         <h1>{{ task.summary }}</h1>
-        <div class="detail-description">
-            {{ task.description|linebreaksbr }}
-        </div>
+        <div class="detail-description">{{ task.description|linebreaksbr }}</div>
+
         <div class="detail-dates">
             <p>Создана: {{ task.created_at|date:"d.m.Y H:i" }}</p>
             <p>Обновлена: {{ task.updated_at|date:"d.m.Y H:i" }}</p>
         </div>
     </article>
-    <div class="detail-actions">
-        <a class="button" href="{% url 'task_edit' task_pk=task.pk %}">
-            Редактировать
-        </a>
 
+    <div class="detail-actions">
+        <a class="button" href="{% url 'task_edit' task_pk=task.pk %}">Редактировать</a>
         <form method="post" action="{% url 'task_delete' task_pk=task.pk %}">
             {% csrf_token %}
-            <button class="button button-danger" type="submit">
-            Удалить
-            </button>
+            <button class="button button-danger" type="submit">Удалить</button>
         </form>
-</div>
     </div>
 {% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактирование проекта — Мои проекты{% endblock %}
+
+{% block content %}
+    <a class="back-link" href="{% url 'project_detail' pk=project.pk %}">← К проекту</a>
+    <div class="page-heading">
+        <div>
+            <p class="eyebrow">Настройки</p>
+            <h1>Редактирование проекта</h1>
+        </div>
+    </div>
+
+    <section class="form-card">
+        <form method="post" class="task-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="form-actions">
+                <a class="button button-secondary" href="{% url 'project_detail' pk=project.pk %}">Отмена</a>
+                <button class="button" type="submit">Сохранить</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ project.title }} — Мои проекты{% endblock %}
+
+{% block content %}
+    <a class="back-link" href="{% url 'projects_view' %}">← Все проекты</a>
+
+    <section class="project-overview">
+        <div class="page-heading">
+            <div>
+                <p class="eyebrow">Проект</p>
+                <h1>{{ project.title }}</h1>
+            </div>
+            <div class="heading-actions">
+                <a class="button button-secondary" href="{% url 'project_update' pk=project.pk %}">Редактировать проект</a>
+                <a class="button button-danger" href="{% url 'project_delete' pk=project.pk %}">Удалить проект</a>
+            </div>
+        </div>
+        <p class="project-description">{{ project.description|linebreaksbr }}</p>
+        <p class="muted">
+            Начало: {{ project.start_date|date:"d.m.Y" }}
+            {% if project.end_date %} · Окончание: {{ project.end_date|date:"d.m.Y" }}{% endif %}
+        </p>
+    </section>
+
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Работа проекта</p>
+            <h2>Задачи</h2>
+        </div>
+        <a class="button" href="{% url 'task_add' project_pk=project.pk %}">+ Новая задача</a>
+    </div>
+
+    {% if tasks %}
+        <section class="task-list" aria-label="Задачи проекта">
+            {% for task in tasks %}
+                <article class="task-card">
+                    <div class="task-meta">
+                        <div class="task-types">
+                            {% for task_type in task.types.all %}
+                                <span class="type-chip">{{ task_type }}</span>
+                            {% empty %}
+                                <span class="muted">Типы не выбраны</span>
+                            {% endfor %}
+                        </div>
+                        <span class="status">{{ task.status }}</span>
+                    </div>
+                    <h3>
+                        <a class="task-title-link" href="{% url 'task_view' task_pk=task.pk %}">
+                            {{ task.summary }}
+                        </a>
+                    </h3>
+                    <p>{{ task.description|truncatewords:24 }}</p>
+                    <small>Создана {{ task.created_at|date:"d.m.Y" }}</small>
+
+                    <div class="task-actions">
+                        <a class="button button-secondary button-small" href="{% url 'task_view' task_pk=task.pk %}">Просмотр</a>
+                        <a class="button button-secondary button-small" href="{% url 'task_edit' task_pk=task.pk %}">Редактировать</a>
+                        <form method="post" action="{% url 'task_delete' task_pk=task.pk %}">
+                            {% csrf_token %}
+                            <button class="button button-danger button-small" type="submit">Удалить</button>
+                        </form>
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+    {% else %}
+        <section class="empty-state">
+            <h2>В проекте пока нет задач</h2>
+            <p>Создай задачу — она сразу будет привязана к этому проекту.</p>
+        </section>
+    {% endif %}
+{% endblock %}

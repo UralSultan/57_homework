@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Удаление задачи — Мои задачи{% endblock %}
+
+{% block content %}
+    <a class="back-link" href="{% url 'task_view' task_pk=task.pk %}">← К задаче</a>
+    <section class="form-card danger-card">
+        <p class="eyebrow">Удаление</p>
+        <h1>Удалить задачу?</h1>
+        <p>Задача «{{ task.summary }}» будет удалена из проекта «{{ task.project.title }}».</p>
+        <form method="post" class="form-actions">
+            {% csrf_token %}
+            <a class="button button-secondary" href="{% url 'task_view' task_pk=task.pk %}">Отмена</a>
+            <button class="button button-danger" type="submit">Удалить задачу</button>
+        </form>
+    </section>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Проекты — Мои задачи{% endblock %}
+
+{% block content %}
+    <div class="page-heading">
+        <div>
+            <p class="eyebrow">Рабочее пространство</p>
+            <h1>Мои проекты</h1>
+        </div>
+        <a class="button" href="{% url 'project_create' %}">+ Новый проект</a>
+    </div>
+
+    <form class="search-form" method="get">
+        <label class="visually-hidden" for="project-search">Поиск проектов</label>
+        <input id="project-search" type="search" name="q" value="{{ q }}"
+               placeholder="Найти проект по названию или описанию">
+        <button class="button button-secondary" type="submit">Найти</button>
+    </form>
+
+    {% if projects %}
+        <section class="project-list" aria-label="Проекты">
+            {% for project in projects %}
+                <article class="project-card">
+                    <p class="eyebrow">{{ project.start_date|date:"d.m.Y" }}{% if project.end_date %} — {{ project.end_date|date:"d.m.Y" }}{% endif %}</p>
+                    <h2>
+                        <a class="task-title-link" href="{% url 'project_detail' pk=project.pk %}">
+                            {{ project.title }}
+                        </a>
+                    </h2>
+                    <p>{{ project.description|truncatewords:28 }}</p>
+                    <div class="card-footer">
+                        <span class="muted">Задач: {{ project.tasks.count }}</span>
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+
+        {% if is_paginated %}
+            <nav class="pagination" aria-label="Страницы проектов">
+                {% if page_obj.has_previous %}
+                    <a class="button button-secondary" href="?q={{ q|urlencode }}&page={{ page_obj.previous_page_number }}">Назад</a>
+                {% endif %}
+                <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+                {% if page_obj.has_next %}
+                    <a class="button button-secondary" href="?q={{ q|urlencode }}&page={{ page_obj.next_page_number }}">Дальше</a>
+                {% endif %}
+            </nav>
+        {% endif %}
+    {% else %}
+        <section class="empty-state">
+            <h2>Проектов пока нет</h2>
+            <p>Создай первый проект, чтобы добавить в него задачи.</p>
+        </section>
+    {% endif %}
+{% endblock %}

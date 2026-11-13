@@ -8,10 +8,15 @@
            href="{% url 'task_view' task_pk=task.pk %}">
             Отмена
         </a>
+    {% elif project %}
+        <a class="button button-secondary"
+           href="{% url 'project_detail' pk=project.pk %}">
+            Отмена
+        </a>
     {% else %}
         <a class="button button-secondary"
-           href="{% url 'task_list' %}">
-            Отмена
+           href="{% url 'projects_view' %}">
+            К проектам
         </a>
     {% endif %}
 

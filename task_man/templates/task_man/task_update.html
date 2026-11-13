@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %}Редактирование задачи{% endblock %}
+{% block title %}Редактирование задачи — Мои задачи{% endblock %}
 
 {% block content %}
+    <a class="back-link" href="{% url 'task_view' task_pk=task.pk %}">← К задаче</a>
     <div class="page-heading">
         <div>
-            <p class="eyebrow">Планирование</p>
+            <p class="eyebrow">Проект: {{ task.project.title }}</p>
             <h1>Редактирование задачи</h1>
             <p class="page-description">{{ task.summary }}</p>
         </div>
     </div>
 
     <section class="form-card">
-        {% include 'partial/task_create_form.html' with button_value="Обновить"%}
+        {% include 'partial/task_create_form.html' with button_value="Сохранить изменения" %}
     </section>
 {% endblock %}

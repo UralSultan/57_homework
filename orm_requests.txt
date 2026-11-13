@@ -1,0 +1,94 @@
+Пример первый: Закрытые задачи за последний месяц
+closed_last_month = Task.objects.filter(
+    updated__gte=one_month_ago,
+    status__name__iexact='Done'
+)
+
+print(closed_last_month.count())
+for t in closed_last_month:
+    print(t.id, t.summary, t.status.name, t.updated)
+
+Вывод:
+2
+
+10 task7 Done 2026-06-15 09:06:42.915956+00:00
+3 task3 Done 2026-06-15 08:56:47.078809+00:00
+
+
+Пример второй:
+Задачи с одним из указанных статусов И одним из указанных типов
+
+tasks_status_and_type = Task.objects.filter(
+    Q(status__name__in=['Done', 'In Progress']) &
+    Q(type__name__in=['Bug', 'Enhancement'])
+).distinct()
+
+print(tasks_status_and_type.count())
+for t in tasks_status_and_type:
+    types = ', '.join(tt.name for tt in t.type.all())
+    print(t.id, t.summary, types, t.status.name)
+
+Вывод
+1
+14 task13 Bug Done
+
+Пример третий:
+Не закрытые задачи, в названии которых содержится "bug" (любой регистр) или относящиеся к типу "Баг"
+
+not_closed_with_bug = Task.objects.filter(
+    ~Q(status__name__iexact='Done') &
+    (Q(summary__icontains='bug') | Q(type__name__iexact='Баг'))
+).distinct()
+
+print(not_closed_with_bug.count())
+for t in not_closed_with_bug:
+    types = ', '.join(tt.name for tt in t.type.all())
+    print(t.id, t.summary, types, t.status.name)
+
+Вывод:
+3
+
+9 Bug task3 Bug New
+6 Bugtask2 Bug Closed
+5 bugtask1 Bug New
+
+Пример четвертый:
+Для всех задач только поля: id, название задачи, название типа и название статуса
+
+tasks_selected_fields = Task.objects.values('id', 'summary', 'type__name', 'status__name')
+
+print(tasks_selected_fields.count())
+for row in tasks_selected_fields:
+    print(row['id'], row['summary'], row['type__name'], row['status__name'])
+
+Вывод:
+14
+
+14 task13 Bug Done
+13 task 10 Task Closed
+12 ench_task2 Enchancement Closed
+11 task 9 Enchancement New
+10 task7 Enchancement Done
+9 Bug task3 Bug New
+8 Test task 1 Task New
+7 ench_task1 Enchancement In Progress
+6 Bugtask2 Bug Closed
+5 bugtask1 Bug New
+4 task4 Task Closed
+3 task3 Task Done
+2 task2 Task Closed
+1 task1 Task Closed
+
+
+Пример пятый:
+Задачи, где краткое описание совпадает с полным (summary == description)
+same_summary_description = Task.objects.filter(description=F('summary'))
+
+print(same_summary_description.count())
+for t in same_summary_description:
+    print(t.id, t.summary, t.status.name)
+
+Вывод:
+1
+
+8 Test task 1 New

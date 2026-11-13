@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import widgets
-from .models import Status, Type, Task
+from task_man.models import Task
 
 
 # class TaskForm(forms.Form):

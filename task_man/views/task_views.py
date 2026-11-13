@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 
-from .models import Task
+from task_man.models import Task
 from django.views.generic import TemplateView, FormView
-from .forms import TaskForm
+from task_man.forms import TaskForm
 
 
 class TaskListView(TemplateView):

@@ -1,5 +1,7 @@
 from django.db import models
 
+from .validators import MinLengthValidator, validate_forbidden_words
+
 
 class Status(models.Model):
     status = models.CharField(max_length=40)
@@ -24,8 +26,8 @@ class Type(models.Model):
 
 
 class Task(models.Model):
-    summary = models.CharField(max_length=100)
-    description = models.TextField()
+    summary = models.CharField(max_length=100, validators=(MinLengthValidator(10),))
+    description = models.TextField(validators=[validate_forbidden_words])
     status = models.ForeignKey(Status, on_delete=models.PROTECT)
     types = models.ManyToManyField(Type, related_name='tasks', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

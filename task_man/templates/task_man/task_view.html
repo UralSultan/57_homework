@@ -26,11 +26,13 @@
         </div>
     </article>
 
-    <div class="detail-actions">
-        <a class="button" href="{% url 'task_edit' task_pk=task.pk %}">Редактировать</a>
-        <form method="post" action="{% url 'task_delete' task_pk=task.pk %}">
-            {% csrf_token %}
-            <button class="button button-danger" type="submit">Удалить</button>
-        </form>
-    </div>
+    {% if user.is_authenticated %}
+        <div class="detail-actions">
+            <a class="button" href="{% url 'task_edit' task_pk=task.pk %}">Редактировать</a>
+            <form method="post" action="{% url 'task_delete' task_pk=task.pk %}">
+                {% csrf_token %}
+                <button class="button button-danger" type="submit">Удалить</button>
+            </form>
+        </div>
+    {% endif %}
 {% endblock %}

@@ -11,10 +11,12 @@
                 <p class="eyebrow">Проект</p>
                 <h1>{{ project.title }}</h1>
             </div>
-            <div class="heading-actions">
-                <a class="button button-secondary" href="{% url 'project_update' pk=project.pk %}">Редактировать проект</a>
-                <a class="button button-danger" href="{% url 'project_delete' pk=project.pk %}">Удалить проект</a>
-            </div>
+            {% if user.is_authenticated %}
+                <div class="heading-actions">
+                    <a class="button button-secondary" href="{% url 'project_update' pk=project.pk %}">Редактировать проект</a>
+                    <a class="button button-danger" href="{% url 'project_delete' pk=project.pk %}">Удалить проект</a>
+                </div>
+            {% endif %}
         </div>
         <p class="project-description">{{ project.description|linebreaksbr }}</p>
         <p class="muted">
@@ -28,7 +30,9 @@
             <p class="eyebrow">Работа проекта</p>
             <h2>Задачи</h2>
         </div>
-        <a class="button" href="{% url 'task_add' project_pk=project.pk %}">+ Новая задача</a>
+        {% if user.is_authenticated %}
+            <a class="button" href="{% url 'task_add' project_pk=project.pk %}">+ Новая задача</a>
+        {% endif %}
     </div>
 
     {% if tasks %}
@@ -55,11 +59,13 @@
 
                     <div class="task-actions">
                         <a class="button button-secondary button-small" href="{% url 'task_view' task_pk=task.pk %}">Просмотр</a>
-                        <a class="button button-secondary button-small" href="{% url 'task_edit' task_pk=task.pk %}">Редактировать</a>
-                        <form method="post" action="{% url 'task_delete' task_pk=task.pk %}">
-                            {% csrf_token %}
-                            <button class="button button-danger button-small" type="submit">Удалить</button>
-                        </form>
+                        {% if user.is_authenticated %}
+                            <a class="button button-secondary button-small" href="{% url 'task_edit' task_pk=task.pk %}">Редактировать</a>
+                            <form method="post" action="{% url 'task_delete' task_pk=task.pk %}">
+                                {% csrf_token %}
+                                <button class="button button-danger button-small" type="submit">Удалить</button>
+                            </form>
+                        {% endif %}
                     </div>
                 </article>
             {% endfor %}

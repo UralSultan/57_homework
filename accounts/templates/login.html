@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Вход — Мои проекты{% endblock %}
+
+{% block content %}
+    <section class="auth-layout">
+        <div class="page-heading auth-heading">
+            <div>
+                <p class="eyebrow">Добро пожаловать</p>
+                <h1>Вход в аккаунт</h1>
+                <p class="page-description">Войди, чтобы продолжить работу с проектами.</p>
+            </div>
+        </div>
+
+        <div class="form-card auth-card">
+            <form action="{% url 'login' %}" method="post" class="task-form auth-form">
+                {% csrf_token %}
+
+                {% if has_error %}
+                    <p class="form-error" role="alert">Неверное имя пользователя или пароль.</p>
+                {% endif %}
+
+                <div class="form-field">
+                    <label for="username">Имя пользователя</label>
+                    <input type="text" name="username" id="username"
+                           value="{{ username }}" autocomplete="username" required autofocus>
+                </div>
+
+                <div class="form-field">
+                    <label for="password">Пароль</label>
+                    <input type="password" name="password" id="password"
+                           autocomplete="current-password" required>
+                </div>
+
+                <button class="button auth-submit" type="submit">Войти</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}

@@ -1,6 +1,8 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ru">
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,8 +11,19 @@
 </head>
 <body>
     <header class="header">
-        <div class="container">
+        <div class="container header-inner">
             <a class="brand" href="{% url 'projects_view' %}">Мои проекты</a>
+            <nav class="account-nav" aria-label="Аккаунт">
+                {% if user.is_authenticated %}
+                    <span class="user-greeting">Добро пожаловать, {{ user.get_short_name|default:user.username }}!</span>
+                    <form class="inline-form" method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button class="button button-secondary" type="submit">Выйти</button>
+                    </form>
+                {% else %}
+                    <a class="button" href="{% url 'login' %}">Войти</a>
+                {% endif %}
+            </nav>
         </div>
     </header>
 

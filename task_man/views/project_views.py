@@ -15,7 +15,7 @@ class ProjectsView(ListView):
     def get_queryset(self):
         projects = Project.objects.annotate(
             active_task_count=Count('tasks', filter=Q(tasks__is_deleted=False))
-        )
+        ).order_by('-start_date', 'pk')
         query = self.request.GET.get('q')
         if query:
             projects = projects.filter(

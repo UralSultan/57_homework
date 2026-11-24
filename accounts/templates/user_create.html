@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Регистрация — Мои проекты{% endblock %}
+
+{% block content %}
+    <section class="auth-layout">
+        <div class="page-heading auth-heading">
+            <div>
+                <p class="eyebrow">Новый аккаунт</p>
+                <h1>Регистрация</h1>
+                <p class="page-description">Создай аккаунт, чтобы работать с проектами и задачами.</p>
+            </div>
+        </div>
+
+        <div class="form-card auth-card">
+            <form method="post" class="task-form auth-form">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}">
+                {{ form.as_p }}
+
+                <button class="button auth-submit" type="submit">Зарегистрироваться</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}

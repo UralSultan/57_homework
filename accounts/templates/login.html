@@ -13,8 +13,9 @@
         </div>
 
         <div class="form-card auth-card">
-            <form action="{% url 'login' %}" method="post" class="task-form auth-form">
+            <form action="" method="post" class="task-form auth-form">
                 {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}">
 
                 {% if has_error %}
                     <p class="form-error" role="alert">Неверное имя пользователя или пароль.</p>

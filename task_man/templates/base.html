@@ -18,10 +18,12 @@
                     <span class="user-greeting">Добро пожаловать, {{ user.get_short_name|default:user.username }}!</span>
                     <form class="inline-form" method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.get_full_path }}">
                         <button class="button button-secondary" type="submit">Выйти</button>
                     </form>
                 {% else %}
-                    <a class="button" href="{% url 'login' %}">Войти</a>
+                    <a class="button" href="{% url 'login' %}?next={{ request.get_full_path|urlencode }}">Войти</a>
+                    <a class="button button-secondary" href="{% url 'register' %}?next={{ request.get_full_path|urlencode }}">Регистрация</a>
                 {% endif %}
             </nav>
         </div>

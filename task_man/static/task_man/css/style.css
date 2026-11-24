@@ -390,6 +390,78 @@ h1 {
     background: #fff;
 }
 
+.members-section {
+    margin-top: 28px;
+    padding: 22px;
+    border: 1px solid #e4e9e3;
+    border-radius: 14px;
+    background: #fff;
+}
+
+.members-section .section-heading {
+    margin-top: 0;
+}
+
+.member-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.member-card {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid #edf0eb;
+    border-radius: 10px;
+    background: #fbfcfa;
+}
+
+.member-avatar {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    place-items: center;
+    border-radius: 50%;
+    background: #e5f2e8;
+    color: #28734b;
+    font-weight: 700;
+}
+
+.member-name {
+    overflow: hidden;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.member-email {
+    overflow: hidden;
+    margin-left: auto;
+    color: #899189;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.task-form select[multiple] {
+    min-height: 150px;
+}
+
+.task-form .helptext {
+    display: block;
+    margin-top: 6px;
+    color: #899189;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
 .project-card h2,
 .section-heading h2 {
     margin: 8px 0;
